@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_riverpod/entity/todo.dart';
-import 'package:todo_riverpod/todo/todo_screen.dart';
-
-final currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
+import 'package:todo_riverpod/data/provider/todo_provider.dart';
 
 class TodoItem extends HookConsumerWidget {
   const TodoItem({Key? key}) : super(key: key);

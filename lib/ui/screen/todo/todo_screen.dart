@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_riverpod/entity/todo.dart';
-import 'package:todo_riverpod/entity/todo_list_filter.dart';
-import 'package:todo_riverpod/todo/children/title.dart' as title;
-import 'package:todo_riverpod/todo/children/toolbar.dart';
+import 'package:todo_riverpod/data/provider/todo_provider.dart';
+import 'package:todo_riverpod/ui/screen/todo/children/toolbar.dart';
+import 'package:todo_riverpod/ui/screen/todo/children/title.dart' as title;
 
 import 'children/todo_item.dart';
 
@@ -12,34 +11,6 @@ final addTodoKey = UniqueKey();
 final activeFilterKey = UniqueKey();
 final completedFilterKey = UniqueKey();
 final allFilterKey = UniqueKey();
-
-final todoListProvider = StateNotifierProvider<TodoList, List<Todo>>((ref) {
-  return TodoList([
-    Todo(id: 'todo-0', description: 'hi'),
-    Todo(id: 'todo-1', description: 'hello'),
-    Todo(id: 'todo-2', description: 'bonjour'),
-  ]);
-});
-
-final todoListFilter = StateProvider((_) => TodoListFilter.all);
-
-final uncompletedTodosCount = Provider<int>((ref) {
-  return ref.watch(todoListProvider).where((todo) => !todo.completed).length;
-});
-
-final filteredTodos = Provider<List<Todo>>((ref) {
-  final filter = ref.watch(todoListFilter);
-  final todos = ref.watch(todoListProvider);
-
-  switch (filter) {
-    case TodoListFilter.completed:
-      return todos.where((todo) => todo.completed).toList();
-    case TodoListFilter.active:
-      return todos.where((todo) => !todo.completed).toList();
-    case TodoListFilter.all:
-      return todos;
-  }
-});
 
 class TodoScreen extends HookConsumerWidget {
   const TodoScreen({Key? key}) : super(key: key);

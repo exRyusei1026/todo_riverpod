@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_riverpod/todo/todo_screen.dart';
+import 'package:todo_riverpod/ui/screen/todo/todo_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
