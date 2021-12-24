@@ -37,8 +37,7 @@ class TodoItem extends HookConsumerWidget {
           },
           leading: Checkbox(
             value: todo.completed,
-            onChanged: (value) =>
-                ref.read(todoListProvider.notifier).toggle(todo.id),
+            onChanged: (value) => ref.read(todoListProvider.notifier).toggle(todo.id),
           ),
           title: isFocused
               ? TextField(
